@@ -2321,12 +2321,13 @@ void HandleInput(ImPlot3DPlot& plot) {
     ImGuiIO& IO = ImGui::GetIO();
 
     // clang-format off
-    const ImGuiButtonFlags plot_button_flags = ImGuiButtonFlags_AllowOverlap
-                                             | ImGuiButtonFlags_PressedOnClick
-                                             | ImGuiButtonFlags_PressedOnDoubleClick
-                                             | ImGuiButtonFlags_MouseButtonLeft
-                                             | ImGuiButtonFlags_MouseButtonRight
-                                             | ImGuiButtonFlags_MouseButtonMiddle;
+    const ImGuiButtonFlags plot_button_flags = static_cast<ImGuiButtonFlags>(
+        static_cast<int>(ImGuiButtonFlags_AllowOverlap) |
+        static_cast<int>(ImGuiButtonFlags_PressedOnClick) |
+        static_cast<int>(ImGuiButtonFlags_PressedOnDoubleClick) |
+        static_cast<int>(ImGuiButtonFlags_MouseButtonLeft) |
+        static_cast<int>(ImGuiButtonFlags_MouseButtonRight) |
+        static_cast<int>(ImGuiButtonFlags_MouseButtonMiddle));
     // clang-format on
     const bool plot_clicked = ImGui::ButtonBehavior(plot.PlotRect, plot.ID, &plot.Hovered, &plot.Held, plot_button_flags);
 #if (IMGUI_VERSION_NUM < 18966)
